@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import com.ver8elijk.cherno.actor.mobs.Player;
 import com.ver8elijk.cherno.graphics.Screen;
 import com.ver8elijk.cherno.input.Keyboard;
+import com.ver8elijk.cherno.input.Mouse;
 import com.ver8elijk.cherno.level.Level;
 import com.ver8elijk.cherno.level.StartLevel;
 
@@ -59,6 +60,9 @@ public class Game extends Canvas implements Runnable {
 		level = new StartLevel("/textures/level.png");
 		player = new Player(3 * 16, 3 * 16, key);
 		player.init(level);
+		Mouse mouse = new Mouse();
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
 		addKeyListener(key);
 	}
 
@@ -140,7 +144,9 @@ public class Game extends Canvas implements Runnable {
 		gfx.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		gfx.setColor(Color.WHITE);
 		gfx.setFont(new Font("Arial", 0, 12));
-		gfx.drawString("Player x:" + player.x + ",Y:" + player.y, 10, 10);
+		gfx.drawString("Player X:" + player.x + ",Y:" + player.y, 4, 16);
+		gfx.drawString("Mouse X:" + Mouse.getX() + " Y:" + Mouse.getY()
+				+ " Button:" + Mouse.getButton(), 4, 32);
 		gfx.dispose();
 		buffer.show();
 
