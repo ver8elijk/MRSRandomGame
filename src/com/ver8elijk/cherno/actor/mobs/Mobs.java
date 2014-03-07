@@ -17,7 +17,7 @@ public abstract class Mobs extends Actor {
 			direction = 2;
 		if (yMove < 0)
 			direction = 0;
-		if (!colliding()) {
+		if (!colliding(xMove, yMove)) {
 			x += xMove;
 			y += yMove;
 		}
@@ -31,7 +31,10 @@ public abstract class Mobs extends Actor {
 
 	}
 
-	private boolean colliding() {
-		return false;
+	private boolean colliding(int xMove, int yMove) {
+		boolean solid = false;
+		if (level.getTile((x + xMove) / 16, (y + yMove) / 16).solid())
+			solid = true;
+		return solid;
 	}
 }
