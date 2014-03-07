@@ -9,6 +9,11 @@ public abstract class Mobs extends Actor {
 	protected boolean moving = false;
 
 	public void move(int xMove, int yMove) {
+		if (xMove != 0 && yMove != 0) {
+			move(xMove, 0);
+			move(0, yMove);
+			return;
+		}
 		if (xMove > 0)
 			direction = 1;
 		if (xMove < 0)
@@ -33,8 +38,12 @@ public abstract class Mobs extends Actor {
 
 	private boolean colliding(int xMove, int yMove) {
 		boolean solid = false;
-		if (level.getTile((x + xMove) / 16, (y + yMove) / 16).solid())
-			solid = true;
+		for (int corner = 0; corner < 4; corner++) {
+			int xCorner = ((x + xMove) + corner % 2 * 4 + 6) / 16;
+			int yCorner = ((y + yMove) + corner / 2 * 4 + 9) / 16;
+			if (level.getTile(xCorner, yCorner).solid())
+				solid = true;
+		}
 		return solid;
 	}
 }
