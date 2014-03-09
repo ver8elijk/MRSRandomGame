@@ -1,7 +1,7 @@
-package com.ver8elijk.cherno.level;
+package com.ver8elijk.Runfree.level;
 
-import com.ver8elijk.cherno.graphics.Screen;
-import com.ver8elijk.cherno.level.tile.Tile;
+import com.ver8elijk.Runfree.graphics.Screen;
+import com.ver8elijk.Runfree.level.tile.Tile;
 
 public class Level {
 

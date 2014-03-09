@@ -1,4 +1,4 @@
-package com.ver8elijk.cherno.graphics;
+package com.ver8elijk.Runfree.graphics;
 
 public class Sprite {
 

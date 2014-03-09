@@ -1,4 +1,4 @@
-package com.ver8elijk.cherno;
+package com.ver8elijk.Runfree;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -12,12 +12,12 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 
-import com.ver8elijk.cherno.actor.mobs.Player;
-import com.ver8elijk.cherno.graphics.Screen;
-import com.ver8elijk.cherno.input.Keyboard;
-import com.ver8elijk.cherno.input.Mouse;
-import com.ver8elijk.cherno.level.Level;
-import com.ver8elijk.cherno.level.StartLevel;
+import com.ver8elijk.Runfree.actor.mobs.Player;
+import com.ver8elijk.Runfree.graphics.Screen;
+import com.ver8elijk.Runfree.input.Keyboard;
+import com.ver8elijk.Runfree.input.Mouse;
+import com.ver8elijk.Runfree.level.Level;
+import com.ver8elijk.Runfree.level.StartLevel;
 
 public class Game extends Canvas implements Runnable {
 	/**
@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable {
 	public static int frameWidth = 640;
 	public static int frameHeight = frameWidth / 16 * 9;
 	public static int renderScale = 2;
-	public static String title = "CHERNO";
+	public static String title = "Run Free";
 	private JFrame frame;
 	// Thread related variables
 	private Thread thread;
@@ -83,6 +83,9 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
+	//
+	//
+	//
 	public void run() {
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
@@ -91,17 +94,19 @@ public class Game extends Canvas implements Runnable {
 		int frames = 0;
 		int updates = 0;
 		requestFocus();
+		// game loop
 		while (gameRunning) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			while (delta >= 1) {
+			while (delta >= 1) {// call to update
 				update();
 				updates++;
 				delta--;
 			}
 			render();
 			frames++;
+			// upd,fps counter
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				frame.setTitle(title + " - Updates: " + updates + " , "
@@ -113,6 +118,7 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 
+	// update all elements
 	private void update() {
 		key.update();
 		player.update();
@@ -131,8 +137,14 @@ public class Game extends Canvas implements Runnable {
 		screen.clear();
 		int xScroll = player.x - screen.screenWidth / 2;
 		int yScroll = player.y - screen.screenHeight / 2;
+
+		/*
+		 * render all individual elements
+		 */
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
+
+		// draw from the pixel array to the backbuffer
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.screenPixels[i];
 		}
@@ -140,8 +152,9 @@ public class Game extends Canvas implements Runnable {
 		Graphics gfx = buffer.getDrawGraphics();
 		gfx.setColor(Color.BLACK);
 		gfx.fillRect(0, 0, getWidth(), getHeight());
-		// Draw the rest
 		gfx.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		// Draw the rest
+
 		gfx.setColor(Color.WHITE);
 		gfx.setFont(new Font("Arial", 0, 12));
 		gfx.drawString("Player X:" + player.x + ",Y:" + player.y, 4, 16);

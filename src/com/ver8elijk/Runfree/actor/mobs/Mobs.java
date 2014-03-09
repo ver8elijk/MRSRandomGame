@@ -1,7 +1,7 @@
-package com.ver8elijk.cherno.actor.mobs;
+package com.ver8elijk.Runfree.actor.mobs;
 
-import com.ver8elijk.cherno.actor.Actor;
-import com.ver8elijk.cherno.graphics.Sprite;
+import com.ver8elijk.Runfree.actor.Actor;
+import com.ver8elijk.Runfree.graphics.Sprite;
 
 public abstract class Mobs extends Actor {
 	protected Sprite sprite;

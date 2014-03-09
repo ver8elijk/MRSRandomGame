@@ -1,7 +1,7 @@
-package com.ver8elijk.cherno.level.tile;
+package com.ver8elijk.Runfree.level.tile;
 
-import com.ver8elijk.cherno.graphics.Screen;
-import com.ver8elijk.cherno.graphics.Sprite;
+import com.ver8elijk.Runfree.graphics.Screen;
+import com.ver8elijk.Runfree.graphics.Sprite;
 
 public class GrassTile extends Tile {
 

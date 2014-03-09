@@ -1,4 +1,4 @@
-package com.ver8elijk.cherno.actor.projectiles;
+package com.ver8elijk.Runfree.actor.projectiles;
 
 public class Arrow extends Projectile {
 

@@ -1,7 +1,7 @@
-package com.ver8elijk.cherno.actor.projectiles;
+package com.ver8elijk.Runfree.actor.projectiles;
 
-import com.ver8elijk.cherno.actor.Actor;
-import com.ver8elijk.cherno.graphics.Sprite;
+import com.ver8elijk.Runfree.actor.Actor;
+import com.ver8elijk.Runfree.graphics.Sprite;
 
 public abstract class Projectile extends Actor {
 

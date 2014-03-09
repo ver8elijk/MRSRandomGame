@@ -1,6 +1,6 @@
-package com.ver8elijk.cherno.graphics;
+package com.ver8elijk.Runfree.graphics;
 
-import com.ver8elijk.cherno.level.tile.Tile;
+import com.ver8elijk.Runfree.level.tile.Tile;
 
 public class Screen {
 	public int screenWidth;

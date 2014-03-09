@@ -1,10 +1,10 @@
-package com.ver8elijk.cherno.actor.mobs;
+package com.ver8elijk.Runfree.actor.mobs;
 
-import com.ver8elijk.cherno.Game;
-import com.ver8elijk.cherno.graphics.Screen;
-import com.ver8elijk.cherno.graphics.Sprite;
-import com.ver8elijk.cherno.input.Keyboard;
-import com.ver8elijk.cherno.input.Mouse;
+import com.ver8elijk.Runfree.Game;
+import com.ver8elijk.Runfree.graphics.Screen;
+import com.ver8elijk.Runfree.graphics.Sprite;
+import com.ver8elijk.Runfree.input.Keyboard;
+import com.ver8elijk.Runfree.input.Mouse;
 
 public class Player extends Mobs {
 	private Keyboard input;
@@ -58,6 +58,8 @@ public class Player extends Mobs {
 
 	public void render(Screen screen) {
 		int flip = 0;
+
+		// Draw sprites according to walking direction and animationcount
 		if (direction == 2) {
 			sprite = Sprite.playerBack0;
 			if (walking) {
