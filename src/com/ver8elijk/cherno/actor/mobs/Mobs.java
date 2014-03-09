@@ -36,6 +36,10 @@ public abstract class Mobs extends Actor {
 
 	}
 
+	protected void shoot(int x, int y, double projectileDirection) {
+		projectileDirection = Math.toDegrees(projectileDirection);
+	}
+
 	private boolean colliding(int xMove, int yMove) {
 		boolean solid = false;
 		for (int corner = 0; corner < 4; corner++) {

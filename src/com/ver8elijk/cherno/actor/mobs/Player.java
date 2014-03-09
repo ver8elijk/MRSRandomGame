@@ -1,8 +1,10 @@
 package com.ver8elijk.cherno.actor.mobs;
 
+import com.ver8elijk.cherno.Game;
 import com.ver8elijk.cherno.graphics.Screen;
 import com.ver8elijk.cherno.graphics.Sprite;
 import com.ver8elijk.cherno.input.Keyboard;
+import com.ver8elijk.cherno.input.Mouse;
 
 public class Player extends Mobs {
 	private Keyboard input;
@@ -36,12 +38,21 @@ public class Player extends Mobs {
 			xMoveDirection--;
 		if (input.right)
 			xMoveDirection++;
-
 		if (xMoveDirection != 0 || yMoveDirection != 0) {
 			move(xMoveDirection, yMoveDirection);
 			walking = true;
 		} else
 			walking = false;
+
+		if (Mouse.getButton() == 1) {
+			double projectileDirection = 0;
+			double directionX = Mouse.getX() - Game.frameWidth
+					* Game.renderScale / 2;
+			double directionY = Mouse.getY() - Game.frameHeight
+					* Game.renderScale / 2;
+			projectileDirection = Math.atan2(directionY, directionX);
+			shoot(x, y, projectileDirection);
+		}
 
 	}
 
