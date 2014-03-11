@@ -1,5 +1,7 @@
 package com.ver8elijk.Runfree.graphics;
 
+import com.ver8elijk.Runfree.actor.projectiles.Projectile;
+import com.ver8elijk.Runfree.level.tile.Tile;
 
 public class Screen {
 	public int screenWidth;
@@ -13,21 +15,42 @@ public class Screen {
 		screenPixels = new int[width * height];
 	}
 
-	public void renderTile(int xPosition, int yPosition, Sprite sprite) {
+	public void renderTile(int xPosition, int yPosition, Tile tile) {
 		xPosition -= xOffset;
 		yPosition -= yOffset;
-		for (int y = 0; y < sprite.SPRITE_SIZE; y++) {
+		for (int y = 0; y < tile.sprite.SPRITE_SIZE; y++) {
 			int yTranslate = y + yPosition;
-			for (int x = 0; x < sprite.SPRITE_SIZE; x++) {
+			for (int x = 0; x < tile.sprite.SPRITE_SIZE; x++) {
 				int xTranslate = x + xPosition;
-				if (xTranslate < -sprite.SPRITE_SIZE
+				if (xTranslate < -tile.sprite.SPRITE_SIZE
 						|| xTranslate >= screenWidth || yTranslate < 0
 						|| yTranslate >= screenHeight)
 					break;
 				if (xTranslate < 0)
 					xTranslate = 0;
-				screenPixels[xTranslate + yTranslate * screenWidth] = sprite.spritePixels[x
-						+ y * sprite.SPRITE_SIZE];
+				screenPixels[xTranslate + yTranslate * screenWidth] = tile.sprite.spritePixels[x
+						+ y * tile.sprite.SPRITE_SIZE];
+			}
+		}
+	}
+
+	public void renderProjectile(int xPosition, int yPosition, Projectile p) {
+		xPosition -= xOffset;
+		yPosition -= yOffset;
+		for (int y = 0; y < p.getSpriteSize(); y++) {
+			int yTranslate = y + yPosition;
+			for (int x = 0; x < p.getSpriteSize(); x++) {
+				int xTranslate = x + xPosition;
+				if (xTranslate < -p.getSpriteSize()
+						|| xTranslate >= screenWidth || yTranslate < 0
+						|| yTranslate >= screenHeight)
+					break;
+				if (xTranslate < 0)
+					xTranslate = 0;
+				int color = p.getSprite().spritePixels[x + y
+						* p.getSpriteSize()];
+				if (color != 0xffff00ff)
+					screenPixels[xTranslate + yTranslate * screenWidth] = color;
 			}
 		}
 	}

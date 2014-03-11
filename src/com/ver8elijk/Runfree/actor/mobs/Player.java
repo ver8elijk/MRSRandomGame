@@ -45,6 +45,7 @@ public class Player extends Mobs {
 			walking = true;
 		} else
 			walking = false;
+		clear();
 		updateShooting();
 
 	}
@@ -64,6 +65,14 @@ public class Player extends Mobs {
 					* Game.renderScale / 2;
 			projectileDirection = Math.atan2(directionY, directionX);
 			shoot(x, y, projectileDirection);
+		}
+	}
+
+	public void clear() {
+		for (int i = 0; i < projectiles.size(); i++) {
+			Projectile p = projectiles.get(i);
+			if (p.isRemoved())
+				projectiles.remove(i);
 		}
 	}
 

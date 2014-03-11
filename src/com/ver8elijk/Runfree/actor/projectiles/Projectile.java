@@ -10,6 +10,8 @@ public abstract class Projectile extends Actor {
 	protected Sprite sprite;
 	protected double newX, newY;
 	protected double speed, range, RoF, damage, damageType;
+	protected double x, y;
+	protected double distance;
 
 	public Projectile(int x, int y, double projectileDirection) {
 		this.x = x;
@@ -18,5 +20,17 @@ public abstract class Projectile extends Actor {
 		yOrigin = y;
 		angle = projectileDirection;
 
+	}
+
+	protected void move() {
+
+	}
+
+	public Sprite getSprite() {
+		return sprite;
+	}
+
+	public int getSpriteSize() {
+		return sprite.SPRITE_SIZE;
 	}
 }
