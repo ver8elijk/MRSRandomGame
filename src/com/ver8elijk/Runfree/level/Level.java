@@ -1,5 +1,9 @@
 package com.ver8elijk.Runfree.level;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ver8elijk.Runfree.actor.Actor;
 import com.ver8elijk.Runfree.graphics.Screen;
 import com.ver8elijk.Runfree.level.tile.Tile;
 
@@ -8,6 +12,7 @@ public class Level {
 	protected int levelWidth, levelHeight;
 	protected int[] tilesInt;
 	protected int tiles[];
+	private List<Actor> entities = new ArrayList<Actor>();
 
 	public Level(int width, int height) {
 		this.levelWidth = width;
@@ -30,7 +35,13 @@ public class Level {
 	}
 
 	public void update() {
+		for (int i = 0; i < entities.size(); i++) {
+			entities.get(i).update();
+		}
+	}
 
+	public void add(Actor e) {
+		entities.add(e);
 	}
 
 	public void render(int xScroll, int yScroll, Screen screen) {
@@ -44,6 +55,9 @@ public class Level {
 			for (int x = x0; x < x1; x++) {
 				getTile(x, y).render(x, y, screen);
 			}
+		}
+		for (int i = 0; i < entities.size(); i++) {
+			entities.get(i).render(screen);
 		}
 	}
 

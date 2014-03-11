@@ -1,6 +1,5 @@
 package com.ver8elijk.Runfree.graphics;
 
-import com.ver8elijk.Runfree.level.tile.Tile;
 
 public class Screen {
 	public int screenWidth;
@@ -14,21 +13,21 @@ public class Screen {
 		screenPixels = new int[width * height];
 	}
 
-	public void renderTile(int xPosition, int yPosition, Tile tile) {
+	public void renderTile(int xPosition, int yPosition, Sprite sprite) {
 		xPosition -= xOffset;
 		yPosition -= yOffset;
-		for (int y = 0; y < tile.sprite.SPRITE_SIZE; y++) {
+		for (int y = 0; y < sprite.SPRITE_SIZE; y++) {
 			int yTranslate = y + yPosition;
-			for (int x = 0; x < tile.sprite.SPRITE_SIZE; x++) {
+			for (int x = 0; x < sprite.SPRITE_SIZE; x++) {
 				int xTranslate = x + xPosition;
-				if (xTranslate < -tile.sprite.SPRITE_SIZE
+				if (xTranslate < -sprite.SPRITE_SIZE
 						|| xTranslate >= screenWidth || yTranslate < 0
 						|| yTranslate >= screenHeight)
 					break;
 				if (xTranslate < 0)
 					xTranslate = 0;
-				screenPixels[xTranslate + yTranslate * screenWidth] = tile.sprite.spritePixels[x
-						+ y * tile.sprite.SPRITE_SIZE];
+				screenPixels[xTranslate + yTranslate * screenWidth] = sprite.spritePixels[x
+						+ y * sprite.SPRITE_SIZE];
 			}
 		}
 	}

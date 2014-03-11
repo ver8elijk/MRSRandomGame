@@ -1,12 +1,17 @@
 package com.ver8elijk.Runfree.actor.mobs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ver8elijk.Runfree.actor.Actor;
+import com.ver8elijk.Runfree.actor.projectiles.Projectile;
 import com.ver8elijk.Runfree.graphics.Sprite;
 
 public abstract class Mobs extends Actor {
 	protected Sprite sprite;
 	protected int direction;
 	protected boolean moving = false;
+	protected List<Projectile> projectiles = new ArrayList<Projectile>();
 
 	public void move(int xMove, int yMove) {
 		if (xMove != 0 && yMove != 0) {

@@ -1,6 +1,8 @@
 package com.ver8elijk.Runfree.actor.mobs;
 
 import com.ver8elijk.Runfree.Game;
+import com.ver8elijk.Runfree.actor.projectiles.Arrow;
+import com.ver8elijk.Runfree.actor.projectiles.Projectile;
 import com.ver8elijk.Runfree.graphics.Screen;
 import com.ver8elijk.Runfree.graphics.Sprite;
 import com.ver8elijk.Runfree.input.Keyboard;
@@ -43,7 +45,17 @@ public class Player extends Mobs {
 			walking = true;
 		} else
 			walking = false;
+		updateShooting();
 
+	}
+
+	protected void shoot(int x, int y, double projectileDirection) {
+		Projectile p = new Arrow(x, y, projectileDirection);
+		projectiles.add(p);
+		level.add(p);
+	}
+
+	public void updateShooting() {
 		if (Mouse.getButton() == 1) {
 			double projectileDirection = 0;
 			double directionX = Mouse.getX() - Game.frameWidth
@@ -53,7 +65,6 @@ public class Player extends Mobs {
 			projectileDirection = Math.atan2(directionY, directionX);
 			shoot(x, y, projectileDirection);
 		}
-
 	}
 
 	public void render(Screen screen) {

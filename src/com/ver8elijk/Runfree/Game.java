@@ -121,6 +121,7 @@ public class Game extends Canvas implements Runnable {
 	// update all elements
 	private void update() {
 		key.update();
+		level.update();
 		player.update();
 
 	}
@@ -157,7 +158,8 @@ public class Game extends Canvas implements Runnable {
 
 		gfx.setColor(Color.WHITE);
 		gfx.setFont(new Font("Arial", 0, 12));
-		gfx.drawString("Player X:" + player.x + ",Y:" + player.y, 4, 16);
+		gfx.drawString("Player X:" + player.x / 16 + ",Y:" + player.y / 16, 4,
+				16);
 		gfx.drawString("Mouse X:" + Mouse.getX() + " Y:" + Mouse.getY()
 				+ " Button:" + Mouse.getButton(), 4, 32);
 		gfx.dispose();
