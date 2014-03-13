@@ -9,7 +9,7 @@ public abstract class Projectile extends Actor {
 	protected double angle;
 	protected Sprite sprite;
 	protected double newX, newY;
-	protected double speed, range, RoF, damage, damageType;
+	protected double speed, range, damage, damageType;
 	protected double x, y;
 	protected double distance;
 

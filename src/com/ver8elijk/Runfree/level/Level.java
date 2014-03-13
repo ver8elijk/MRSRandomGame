@@ -40,7 +40,20 @@ public class Level {
 		}
 	}
 
+	public boolean collidingWithTile(double x, double y, double newX,
+			double newY, int size) {
+		boolean solid = false;
+		for (int corner = 0; corner < 4; corner++) {
+			int xCorner = (((int) x + (int) newX) + corner % 2 * (size / 2) + 6) / 16;
+			int yCorner = (((int) y + (int) newY) + corner / 2 * (size / 2) + 6) / 16;
+			if (getTile(xCorner, yCorner).solid())
+				solid = true;
+		}
+		return solid;
+	}
+
 	public void add(Actor e) {
+		e.init(this);
 		entities.add(e);
 	}
 

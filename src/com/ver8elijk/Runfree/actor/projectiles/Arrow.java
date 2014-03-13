@@ -4,12 +4,12 @@ import com.ver8elijk.Runfree.graphics.Screen;
 import com.ver8elijk.Runfree.graphics.Sprite;
 
 public class Arrow extends Projectile {
+	public static final int RoF = 10;
 
 	public Arrow(int x, int y, double projectileDirection) {
 		super(x, y, projectileDirection);
 		speed = 4;
 		range = 480;
-		RoF = 2;
 		damage = 5;
 		damageType = 0;
 
@@ -19,12 +19,17 @@ public class Arrow extends Projectile {
 	}
 
 	public void update() {
+		if (level.collidingWithTile(x, y, newX, newY, 9)) {
+			remove();
+		}
 		move();
 	}
 
 	protected void move() {
+
 		x += newX;
 		y += newY;
+
 		if (calculateDistance() > range)
 			remove();
 	}

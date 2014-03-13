@@ -31,7 +31,6 @@ public abstract class Mobs extends Actor {
 			x += xMove;
 			y += yMove;
 		}
-		System.out.println(projectiles.size());
 	}
 
 	public void update() {

@@ -13,6 +13,7 @@ public class Player extends Mobs {
 	private Sprite sprite;
 	private int animateCount = 0;
 	private boolean walking = false;
+	private int RateOfFire = 0;
 
 	public Player(Keyboard input) {
 		this.input = input;
@@ -22,9 +23,12 @@ public class Player extends Mobs {
 		this.x = x;
 		this.y = y;
 		this.input = input;
+		RateOfFire = Arrow.RoF;
 	}
 
 	public void update() {
+		if (RateOfFire > 0)
+			RateOfFire--;
 		int xMoveDirection = 0, yMoveDirection = 0;
 
 		if (animateCount < 4096) {
@@ -57,7 +61,7 @@ public class Player extends Mobs {
 	}
 
 	public void updateShooting() {
-		if (Mouse.getButton() == 1) {
+		if (Mouse.getButton() == 1 && RateOfFire <= 0) {
 			double projectileDirection = 0;
 			double directionX = Mouse.getX() - Game.frameWidth
 					* Game.renderScale / 2;
@@ -65,6 +69,7 @@ public class Player extends Mobs {
 					* Game.renderScale / 2;
 			projectileDirection = Math.atan2(directionY, directionX);
 			shoot(x, y, projectileDirection);
+			RateOfFire = Arrow.RoF;
 		}
 	}
 
